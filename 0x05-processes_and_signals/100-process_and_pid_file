@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# a script that creates a file and prints
+# to infinity and beyond before waiting for
+# display I hate the kill command on SIGTERM
+# display Y U no love me?! SIGINT
+
+terminator() {
+	rm /var/run/myscript.pid
+	exit
+}
+
+echo "$$" > /var/run/myscript.pid
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap "echo 'Y U no love me?!'" SIGINT
+	trap "echo 'I hate the  kill command' && terminator" SIGTERM
+	trap 'terminator' SIGQUIT
+done

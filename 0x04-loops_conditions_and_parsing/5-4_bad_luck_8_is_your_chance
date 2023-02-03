@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#script that loops from 1 to ten
+# Displays bad luck on 4th iteration
+# + good luck on the 8th iteration
+# + else it displays best school
+
+i=0
+while [ $i -lt 10 ]
+do
+	if [ $i -eq 3 ]
+	then
+		echo "bad luck"
+	elif [ $i -eq 7 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	(( i++ ))
+done

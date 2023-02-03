@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# ascript that displays numbers from 1 - 1000
+# prints FizzBuzz for multiples of 3 and 5
+# display fizz for multiples of 3
+# display Buzz for multiples of 5
+# else prints number
+
+for i in {1..100}
+do
+	if (( i % 3 == 0 && i % 5 == 0 ))
+	then
+		echo "FizzBuzz"
+	elif (( i % 3 == 0 ))
+	then
+		echo "Fizz"
+	elif (( i % 5 == 0 ))
+	then
+		echo "Buzz"
+	else
+		echo "$i"
+	fi
+done

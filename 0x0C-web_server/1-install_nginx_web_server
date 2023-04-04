@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env bash
 # install nginx and create index.html file with Hello
 # World
 

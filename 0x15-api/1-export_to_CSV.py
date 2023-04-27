@@ -9,16 +9,14 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    if len(argv) > 1:
-        userID = int(argv[1])
-        url = "https://jsonplaceholder.typicode.com/"
-        r = requests.get("{}/{}".format(url, userID))
-        username = r.json().get("username")
-        todos = requests.get("{}users/{}/todos".format(url, userID)).json()
-        with open("{}.csv".format(userID), 'w', newline='') as csvfile:
-            writeFile = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-            for task in todos:
-                writeFile.writerow([int(userID),
-                                    username,
-                                    task.get('completed'),
-                                    task.get('title')])
+    user_id = argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(user_id)).json()
+    username = user.get("username")
+    todos = requests.get(url + "todos", params={"userId": user_id}).json()
+
+    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        [writer.writerow(
+            [user_id, username, t.get("completed"), t.get("title")]
+         ) for t in todos]
